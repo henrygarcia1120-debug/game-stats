@@ -53,7 +53,7 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
     //throw new UnsupportedOperationException("Unimplemented method 'gameCount'");
     checkPerson(person);
 
-    
+    return gameCounts.get(person);
 
     // Uncomment this and have it as your first line once you remove the UnsupportedOperationException
     
