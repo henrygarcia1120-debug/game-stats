@@ -19,25 +19,37 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    * }
    */
   private Map<String, Integer> gameCounts;
+  private Map<String, Integer> highScores;
 
   // For some waves you will need to add more private instance variables here!
 
 
 
   public MapGameStatsCalculator(Scanner scoreInput) {
-    gameCounts = new HashMap<>();
+  gameCounts = new HashMap<>();
+  highScores = new HashMap<>();
 
-    while(scoreInput.hasNext()) {
-      String name = scoreInput.next();
-      int score = scoreInput.nextInt();
-      if(gameCounts.containsKey(name))
-      {
-        gameCounts.put(name, gameCounts.get(name)+1);
-      }else {
-        gameCounts.put(name, 1); 
-      }
-      // TODO: add logic here to use the name and score to fill your map(s)!
+  while(scoreInput.hasNext()) {
+    String name = scoreInput.next();
+    int score = scoreInput.nextInt();
+
+    // update game count
+    if(gameCounts.containsKey(name)) {
+      gameCounts.put(name, gameCounts.get(name) + 1);
+    } else {
+    gameCounts.put(name, 1);
     }
+
+  // update high score
+    if(highScores.containsKey(name)) {
+      int currentHigh = highScores.get(name);
+      if(score > currentHigh) {
+        highScores.put(name, score);
+     }
+    } else {
+      highScores.put(name, score);
+    }
+}
   }
 
   /**
@@ -69,10 +81,15 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
   @Override
   public int highScore(String person) {
     // TODO: remove this exception once you have implemented your method!
-    throw new UnsupportedOperationException("Unimplemented method 'highScore'");
+    //throw new UnsupportedOperationException("Unimplemented method 'highScore'");
+    checkPerson(person);
+ 
+    
+
+    return highScores.get(person);
 
     // Uncomment this and have it as your first line once you remove the UnsupportedOperationException
-    //checkPerson(person);
+    
   }
 
   /**
@@ -85,13 +102,21 @@ public class MapGameStatsCalculator implements GameStatsCalculator {
    * @throws NoSuchElementException if there is no score data
    */
   @Override
-  public String highestScorer() {
+  public String highestScorer() 
+  {
     // TODO: remove this exception once you have implemented your method!
-    throw new UnsupportedOperationException("Unimplemented method 'highestScorer'");
+    //throw new UnsupportedOperationException("Unimplemented method 'highestScorer'");
+    //checkScoreData();
+
+    return 
+  }
+
+  
+
 
     // Uncomment this and have it as your first line once you remove the UnsupportedOperationException
-    //checkScoreData();
-  }
+    
+  
 
   /**
    * Returns the average score a person has gotten.
